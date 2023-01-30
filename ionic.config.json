@@ -1,0 +1,7 @@
+{
+  "name": "FitGrowth",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
