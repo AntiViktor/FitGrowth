@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fitgrowth": {
+      "hosting": {
+        "app": [
+          "fit-growth"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fitgrowth"
+  }
+}
