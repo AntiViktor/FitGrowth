@@ -22,6 +22,10 @@ export class SignupPage {
     this.credentials = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      age: ['', [Validators.required, Validators.min(1), Validators.max(110)]],
+      weight:['',[Validators.required,Validators.min(1), Validators.max(500)]],
+      height:['',[Validators.required,Validators.min(1),Validators.max(300)]],
+      activity:['',[Validators.required]]
     });
   }
 
@@ -34,12 +38,11 @@ export class SignupPage {
   }
 
   async register() {
-    const { email, password } = this.credentials?.value;
-
+    const { password, email, age, weight, height, activity } = this.credentials?.value;
     const loading = await this.loadingController.create();
     await loading.present();
 
-    const user = await this.authService.register(email, password);
+    const user = await this.authService.register({ email, age, weight, height, activity }, password);
     await loading.dismiss();
   }
 

@@ -6,20 +6,15 @@ import {
   canActivate,
 } from '@angular/fire/auth-guard';
 
-const redirectLoggedInToTabs = () => redirectLoggedInTo(['home']);
+const redirectLoggedInToTabs = () => redirectLoggedInTo(['tabs']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
 
 const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () =>
-      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+      import('./pages/tabs/tabs.module').then((m) => m.TabsPageModule),
       ...canActivate(redirectUnauthorizedToLogin)
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'login',

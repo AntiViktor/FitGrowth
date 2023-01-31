@@ -18,6 +18,32 @@
      <ion-note slot="error" *ngIf="(password?.dirty || password?.touched) && password?.errors">Password need to be 6 characters</ion-note>
    
     </ion-item>
+
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-label position="floating">Age</ion-label>
+      <ion-input type="number" placeholder="Enter age in years" formControlName="age"></ion-input>
+     </ion-item>
+
+     <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-label position="floating">Weight</ion-label>
+      <ion-input type="number" placeholder="Enter weight in kilograms" formControlName="weight"></ion-input>
+     </ion-item>
+
+     <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-label position="floating">Height</ion-label>
+      <ion-input type="number" placeholder="Enter height in centimeters" formControlName="height"></ion-input>
+     </ion-item>
+
+     <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-label position="fixed">Activity level</ion-label>
+        <ion-select placeholder="Select activity level" formControlName="activity" >
+          <ion-select-option value="sedentary">Sedentary</ion-select-option>
+          <ion-select-option value="low">Low</ion-select-option>
+          <ion-select-option value="medium">Medium</ion-select-option>
+          <ion-select-option value="high">High</ion-select-option>
+          <ion-select-option value="extreme">Extreme</ion-select-option>
+        </ion-select>
+     </ion-item>
    
    <ion-button expand="full" type="submit" [disabled]="!credentials.valid">Register</ion-button>
    <ion-button expand="full" type="button" routerLink = "/login" routerDirection="forward">Already have an account</ion-button>

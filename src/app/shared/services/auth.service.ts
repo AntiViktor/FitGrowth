@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
+import { User } from '../models/User';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,27 +15,22 @@ import {
 export class AuthService {
   constructor(
     private auth: Auth,
-    private readonly navController: NavController
+    private navController: NavController,
+    private userService: UserService,
+    private alertController: AlertController
   ) {
     this.auth.onAuthStateChanged((firebaseUser) => {
       if (firebaseUser) {
-        this.navController.navigateRoot('/home');
+        this.navController.navigateRoot('/tabs');
       } else {
         this.navController.navigateRoot('/login');
       }
     });
   }
-  public async register(email: string, password: string) {
-    try {
-      const user = await createUserWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
-      return user;
-    } catch (e) {
-      return null;
-    }
+  public async register(user: User, password: string) {
+    await createUserWithEmailAndPassword(this.auth, user.email, password)
+      .then((cred) => this.userService.createUser(user, cred.user.uid))
+      .catch((error) => console.log(error));
   }
 
   async login(email: string, password: string) {
@@ -41,7 +38,12 @@ export class AuthService {
       const user = await signInWithEmailAndPassword(this.auth, email, password);
       return user;
     } catch (e) {
-      return null;
+        const alert = await this.alertController.create({
+          header: 'Login failed',
+          buttons: ['OK'],
+        });
+        await alert.present();
+        return null;
     }
   }
 

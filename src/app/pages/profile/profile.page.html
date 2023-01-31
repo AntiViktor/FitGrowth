@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf=" user | async as user" class="ion-padding">
+    <ion-list>
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-text>{{user.email}}</ion-text>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Age:</ion-label>
+        <ion-text>{{user.age}}</ion-text>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Weight:</ion-label>
+        <ion-text>{{user.weight}}</ion-text>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Height:</ion-label>
+        <ion-text>{{user.height}}</ion-text>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Activity Level:</ion-label>
+        <ion-text>{{user.activity}}</ion-text>
+      </ion-item>
+    </ion-list>
+    <ion-button expand = "full" type="button" (click)="logout()">Logout</ion-button>
+  </ion-content>
+

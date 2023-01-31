@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>nutrition</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <circle-progress
+  [percent]="progressValue"
+  [radius]="100"
+  [outerStrokeWidth]="16"
+  [innerStrokeWidth]="8"
+  [outerStrokeColor]="isOverLimit ? '#FF0000' : '#78C000'"
+  [innerStrokeColor]="'#C7E596'"
+  [animation]="true"
+  [animationDuration]="300"
+  [responsive]="true"
+  [startFromZero] = "false"
+></circle-progress>
+<ion-button (click)="incrementBar()">Increment</ion-button>
+</ion-content>
